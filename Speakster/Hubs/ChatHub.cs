@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 
-namespace WebApplication3.Hubs
+namespace Speakster.Hubs
 {
     public class ChatHub : Hub
     {

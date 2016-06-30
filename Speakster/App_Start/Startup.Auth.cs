@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using WebApplication3.Models;
+using Speakster.Models;
 
-namespace WebApplication3
+namespace Speakster
 {
     public partial class Startup
     {

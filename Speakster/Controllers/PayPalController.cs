@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication3.Models;
+using Speakster.Models;
 
-namespace WebApplication3.Controllers
+namespace Speakster.Controllers
 {
 
     public class PayPalController : Controller

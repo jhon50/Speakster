@@ -1,9 +1,9 @@
 ﻿@using Microsoft.AspNet.Identity
 @{
 
-    WebApplication3.Models.ApplicationDbContext db = new WebApplication3.Models.ApplicationDbContext();
-    WebApplication3.Models.ApplicationUser applicationUser = db.Users.Find(User.Identity.GetUserId());
-    WebApplication3.Models.Student student = db.Students.Find(User.Identity.GetUserId());
+    Speakster.Models.ApplicationDbContext db = new Speakster.Models.ApplicationDbContext();
+    Speakster.Models.ApplicationUser applicationUser = db.Users.Find(User.Identity.GetUserId());
+    Speakster.Models.Student student = db.Students.Find(User.Identity.GetUserId());
     if (Request.IsAuthenticated && User.IsInRole("ADMIN"))
     {
         Layout = "~/Views/Shared/_Layout.cshtml";

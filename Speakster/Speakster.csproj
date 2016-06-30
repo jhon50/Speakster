@@ -303,6 +303,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modal.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -383,7 +384,7 @@
     <Content Include="Views\Teachers\Index.cshtml" />
     <Content Include="Views\Users\ProfilePicture.cshtml" />
     <Content Include="Views\Teachers\Gallery.cshtml" />
-    <Content Include="Views\Shared\_ProfilePicture.cshtml" />
+    <Content Include="Views\Shared\_ProfilePictureModal.cshtml" />
     <Content Include="Views\Teachers\_teacherInfo.cshtml" />
     <Content Include="Views\Chat\Index.cshtml" />
     <Content Include="Views\Chat\ReturnTeacherNewMessages.cshtml" />
@@ -392,6 +393,7 @@
     <Content Include="Views\Chat\ReturnStudentNewMessages.cshtml" />
     <Content Include="Views\Chat\NewMessageStatus.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_ProfilePictureSection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

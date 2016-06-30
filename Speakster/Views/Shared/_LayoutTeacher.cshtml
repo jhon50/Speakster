@@ -209,72 +209,7 @@
             <div id="sidebar" class="nav-collapse ">
                 <!-- sidebar menu start-->
                 <ul class="sidebar-menu" id="nav-accordion">
-                    @if (Request.IsAuthenticated)
-                    {
-                        WebApplication3.Models.ApplicationDbContext db = new WebApplication3.Models.ApplicationDbContext();
-                        WebApplication3.Models.ApplicationUser applicationUser = db.Users.Find(User.Identity.GetUserId());
-                        if (!String.IsNullOrEmpty(applicationUser.ProfilePicture))
-                        {
-                            <div class="profile-picture-container">
-                                <p id="profile-picture"><img src="@Url.Content("~/" + applicationUser.ProfilePicture)" width="130" height="130"></p>
-                                <a class="modalButton">
-                                    <div id="black-square-container">
-                                        <div id="black-square"></div>
-                                        <div id="update-picture-text">
-                                            <h5>Atualizar foto do perfil</h5>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="profile-picture-container">
-                                <p id="profile-picture"><img src="@Url.Content("~/images/Profile/avatar.png")" width="130" height="130"></p>
-                                <a class="modalButton">
-                                    <div id="black-square-container">
-                                        <div id="black-square"></div>
-                                        <div id="update-picture-text">
-                                            <h5>Atualizar foto do perfil</h5>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        }
-                        <h5 class="centered">@User.Identity.GetUserName()</h5>
-
-
-
-                         <!-- Profile Picture Modal -->
-                        <div class="modal fade" id="profilePictureModal" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Foto do Perfil</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        @{
-                                            WebApplication3.Models.ChangeProfilePictureViewModel model = new WebApplication3.Models.ChangeProfilePictureViewModel();
-                                            model.id = applicationUser.Id;
-                                            Html.RenderPartial("_ProfilePicture", model);
-                                        }
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    <!-- Profile Picture Modal -->
-
-                  }
-
-
+                    @Html.Partial("_ProfilePictureSection")
                     <li class="mt">
                         <a class="active" href="/Users/Dashboard">
                             <i class="fa fa-dashboard"></i>
@@ -377,18 +312,18 @@
                             @if (Request.IsAuthenticated)
                             {
                                 //busca pelo usuário
-                                WebApplication3.Models.ApplicationDbContext db = new WebApplication3.Models.ApplicationDbContext();
-                                //WebApplication3.Models.ApplicationUser applicationUser = db.Users.Find(User.Identity.GetUserId());
-                                WebApplication3.Models.Student student = db.Students.Find(User.Identity.GetUserId());
+                                Speakster.Models.ApplicationDbContext db = new Speakster.Models.ApplicationDbContext();
+                                //Speakster.Models.ApplicationUser applicationUser = db.Users.Find(User.Identity.GetUserId());
+                                Speakster.Models.Student student = db.Students.Find(User.Identity.GetUserId());
 
                                 //busca pelo professor do usuário
                                 //necessário para ter as informações específicas do perfil do professor
-                                WebApplication3.Models.Teacher teacher = db.Teachers.Find(student.Teacher_id);
+                                Speakster.Models.Teacher teacher = db.Teachers.Find(student.Teacher_id);
                                 if (teacher != null)
                                 {
                                     //busca pela entrada de usuario do professor
                                     //necessário para pegar a foto de perfil
-                                    WebApplication3.Models.ApplicationUser teacher_user = db.Users.Find(teacher.User_id);
+                                    Speakster.Models.ApplicationUser teacher_user = db.Users.Find(teacher.User_id);
 
                                     //pega ProfilePicture do respectivo professor
                                     if (teacher_user != null && !String.IsNullOrEmpty(teacher_user.ProfilePicture))
@@ -592,7 +527,7 @@
 
     <script>
         $(document).ready(function () {
-            $(".modalButton").click(function () {
+            $(".profilePictureButton").click(function () {
                 $("#profilePictureModal").modal().appendTo("body");
             });
         });

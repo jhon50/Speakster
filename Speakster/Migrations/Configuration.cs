@@ -1,19 +1,19 @@
-namespace WebApplication3.Migrations
+namespace Speakster.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<WebApplication3.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Speakster.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "WebApplication3.Models.ApplicationDbContext";
+            ContextKey = "Speakster.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(WebApplication3.Models.ApplicationDbContext context)
+        protected override void Seed(Speakster.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

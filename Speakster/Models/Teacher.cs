@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication3.Models
+namespace Speakster.Models
 {
     public class Teacher
     {

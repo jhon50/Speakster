@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 
-namespace WebApplication3.Models
+namespace Speakster.Models
 {
     public class Language
     {

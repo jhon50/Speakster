@@ -1,4 +1,4 @@
-namespace WebApplication3.Migrations
+namespace Speakster.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

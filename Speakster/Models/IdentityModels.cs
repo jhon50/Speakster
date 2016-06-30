@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication3.Models
+namespace Speakster.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
@@ -65,19 +65,19 @@ namespace WebApplication3.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<WebApplication3.Models.Language> Languages { get; set; }
+        public System.Data.Entity.DbSet<Speakster.Models.Language> Languages { get; set; }
 
-        public System.Data.Entity.DbSet<WebApplication3.Models.Teacher> Teachers { get; set; }
+        public System.Data.Entity.DbSet<Speakster.Models.Teacher> Teachers { get; set; }
 
-        public System.Data.Entity.DbSet<WebApplication3.Models.SpeakingLevel> SpeakingLevels { get; set; }
+        public System.Data.Entity.DbSet<Speakster.Models.SpeakingLevel> SpeakingLevels { get; set; }
 
-        public System.Data.Entity.DbSet<WebApplication3.Models.ListeningLevel> ListeningLevels { get; set; }
+        public System.Data.Entity.DbSet<Speakster.Models.ListeningLevel> ListeningLevels { get; set; }
 
-        public System.Data.Entity.DbSet<WebApplication3.Models.Student> Students { get; set; }
+        public System.Data.Entity.DbSet<Speakster.Models.Student> Students { get; set; }
 
-        public System.Data.Entity.DbSet<WebApplication3.Models.UserPayment> UserPayments { get; set; }
+        public System.Data.Entity.DbSet<Speakster.Models.UserPayment> UserPayments { get; set; }
 
-        public System.Data.Entity.DbSet<WebApplication3.Models.ChatMessage> ChatMessages { get; set; }
+        public System.Data.Entity.DbSet<Speakster.Models.ChatMessage> ChatMessages { get; set; }
 
 
 

@@ -8,9 +8,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication3.Models;
+using Speakster.Models;
 
-namespace WebApplication3.Controllers
+namespace Speakster.Controllers
 {
     public class TeachersController : Controller
     {

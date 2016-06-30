@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace WebApplication3
+namespace Speakster
 {
     public class BundleConfig
     {
@@ -28,6 +28,22 @@ namespace WebApplication3
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-select.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/dashboard").Include(
+                      "~/Content/assets_dashboard/js/bootstrap.min.js",
+                      "~/Content/assets_dashboard/js/jquery-1.8.3.min.js",
+                      "~/Content/assets_dashboard/js/jquery.dcjqaccordion.2.7.js",
+                      "~/Content/assets_dashboard/js/jquery.scrollTo.min.js",
+                      "~/Content/assets_dashboard/js/jquery.nicescroll.js",
+                      "~/Content/assets_dashboard/js/jquery.sparkline.js",
+                      "~/Content/assets_dashboard/js/common-scripts.js",
+                      "~/Content/assets_dashboard/js/gritter/js/jquery.gritter.js",
+                      "~/Content/assets_dashboard/js/gritter-conf.js",
+                      "~/Content/assets_dashboard/js/sparkline-chart.js",
+                      "~/Content/assets_dashboard/js/zabuto_calendar.js",
+                      "~/Scripts/modal.js"
+                      ));
+
         }
     }
 }

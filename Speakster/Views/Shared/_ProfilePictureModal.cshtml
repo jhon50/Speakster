@@ -1,0 +1,26 @@
+﻿@model Speakster.Models.ChangeProfilePictureViewModel
+@{
+    ViewBag.Title = "ProfilePicture";
+}
+
+@using (Html.BeginForm("ProfilePicture", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.id)
+
+if (Model.ProfilePicture != null)
+{
+                <img src="@Url.Content("~/" + @Model.ProfilePicture)" width="130" height="130" />
+            }
+            else
+            {
+                <div class="noPicture"></div>
+            }
+        <div class="file-input-wrapper">
+
+            <input type="file" id='imgfile' name="UserPicture" onchange='loadImage("", "", "imgfile","#profilePicture");' />
+            <input type="submit" value="Send"/>
+        </div>
+}
