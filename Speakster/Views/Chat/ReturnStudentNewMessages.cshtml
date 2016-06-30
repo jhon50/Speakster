@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    Layout = null;
+}
+
+@if (ViewBag.Messages != null)
+{
+    foreach (var Item in ViewBag.Messages)
+    {
+        <div class="messageContainer" id="detailsDiv">
+            <div class="messageContainer" id="detailsDiv">
+                <div class="message @(Item.Sender.Equals(User.Identity.GetUserId()) ? "his": "mine" )">
+                    <div class="@(Item.Sender.Equals(User.Identity.GetUserId()) ?  "hisMessageArrow" : "myMessageArrow")"></div>
+                    <span>@Item.Message</span>
+                </div>
+
+                <div class="@(Item.Sender.Equals(User.Identity.GetUserId()) ?  "hisTimeStamp" : "mineTimeStamp")">@Item.Date</div>
+            </div>
+
+        </div>
+    }
+
+}

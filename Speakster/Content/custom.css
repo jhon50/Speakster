@@ -1,0 +1,158 @@
+/* Este arquivo CSS foi criado para possibilitar pequenas customizações sem que
+    o CSS principal fique saturado, e também para facilitar a edição de tais customizações.
+*/
+
+/* Desktop - Largura maior que 736px*/
+@media screen and (min-width: 981px) {
+
+    /*Botão em Shared _Layout*/
+    #fb-button-shared {
+        width: 250px;
+        margin:auto;
+    }
+
+    #banner .inner .inner-content {
+        position: absolute;
+        right: -50%;
+        bottom: 10%;
+        margin-right: 50%;
+    }
+
+        #banner .inner .inner-content p {
+            margin-top: -8%;
+            width: 60%;
+        }
+
+    #banner select {
+        width: 35%;
+        position: relative;
+        top: -60px;
+        right: -36%;
+    }
+
+    #banner input {
+        position: relative;
+        right: -51%;
+        top: -110px;
+    }
+
+    .content-objects #arrow-right {
+        top: -105px;
+        right: -75%;
+    }
+
+    #quero-falar {
+        position: relative;
+        margin-right: 15%;
+    }
+}
+
+@media screen and (min-width: 736px) and (max-width: 980px) {
+    #banner .inner .inner-content {
+        margin:auto;
+        width: 60%;
+        position:relative;
+        right:-50px;
+        bottom:-100px;
+
+    }
+    #banner .inner .inner-content p {
+            margin-top: -5%;
+            width: 70%;
+        }
+
+    .content-objects {
+        margin-top: -5%;
+    }
+
+        .content-objects select {
+            width: 45%;
+        }
+
+        .content-objects #arrow-right {
+            position: relative;
+            right: -50%;
+            top: -43px;
+        }
+}
+
+@media screen and (max-width: 735px) {
+     #banner .inner .inner-content p {
+            margin-top: -3%;
+            width: 70%;
+        }
+         .content-objects select {
+            width: 45%;
+        }
+
+        .content-objects #arrow-right {
+            position: relative;
+            right: -50%;
+            top: -43px;
+        }
+}
+
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+/*
+    =====================================
+    PROFILE PICTURE SECTION
+    =====================================
+*/
+.profile-picture-container {
+    margin: auto;
+    width: 130px;
+}
+
+
+
+/*Container com o black-square e o texto*/
+#black-square-container {
+    position: absolute;
+    top: 145px;
+    opacity: 0;
+    -webkit-transition: all 500ms ease-in-out;
+    -moz-transition: all 500ms ease-in-out;
+    -ms-transition: all 500ms ease-in-out;
+    -o-transition: all 500ms ease-in-out;
+    transition: all 500ms ease-in-out;
+}
+
+
+    #black-square-container:hover {
+        opacity: 1;
+    }
+
+
+#black-square {
+    width: 130px;
+    height: 60px;
+    background: black;
+    opacity: 0.6;
+}
+
+
+#update-picture-text {
+    position: absolute;
+    top: 0px;
+    margin-left: 5%;
+    opacity: 1;
+}
+
+.modalButton {
+    cursor: pointer;
+}
+
+/*
+    ==============================
+    END PROFILE PICTURE SECTION
+    ==============================
+*/

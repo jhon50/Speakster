@@ -1,0 +1,50 @@
+﻿
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/jquery.signalR-2.1.2.js"></script>    
+    <script type="text/javascript" src="~/signalr/hubs"></script>
+
+    <script>
+        $(function () {
+            var chatHub = $.connection.chatHub;
+
+            chatHub.client.SendMessageToPage = function (name, message) {
+                $("#discussion").append("<li><strong>" + name +"</strong>" + message + "</li>")
+            };
+            $("#displayName").val(prompt("Enter your name:", "SignalR Chat"));
+            $("#message").focus();
+
+            $.connection.hub.start().done(function () {
+                alert("conectado com sucesso");
+                $("#sendMessage").on("click", function () {
+                    var name = $("#displayName").val();
+                    var message = $("#message").val();
+                    chatHub.server.send(name, message);
+                    $("#message").val("").focus();
+                });
+            });
+            // obeter a referência do hub gerado automaticamente
+        });
+
+    </script>
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <p>SignalR Chat</p>
+        <p></p>
+        <input type="text" id="message" />
+        <input type="button" id="sendMessage" value="Send" />
+        <input type="hidden" id="displayName" />
+        <ul id="discussion">
+
+        </ul>
+    </div>
+</body>
+</html>

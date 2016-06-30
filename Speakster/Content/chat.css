@@ -1,0 +1,156 @@
+﻿       
+.chatInfo {
+    width: 100%;
+    font-size: 1.2em;
+    font-family: 'HomizioRegular';
+    color: #333;
+}
+
+.chatContainer {
+    width: 100%;
+    float: left;
+    margin: 0 auto;
+}
+
+.chat {
+    width: 100%;
+    float: left;
+    height: 750px;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+.messageDisplay {
+    float: left;
+    width: 95%;
+    height: 500px;
+    margin: 40px 0 0 2.9%;
+    background: #fff;
+    border: 1px solid #ccc;
+    overflow-y: scroll;
+}
+
+.messageContainer {
+    width: 100%;
+    float: left;
+    position: relative;
+}
+
+.message {
+    max-width: 60%;
+    padding: 10px;
+    position: relative;
+    margin: 20px;
+    border-radius: 4px;
+    word-break: break-all;
+    color: #fff;
+    font-size: 1.2em;
+    font-family: 'HomizioRegular';
+}
+
+.mine {
+    background: #c6c330;
+    float: left;
+}
+
+.his {
+    background: #49b7a3;
+    float: right;
+}
+
+.myMessageArrow {
+    position: relative;
+}
+
+    .myMessageArrow:after {
+        left: -28px;
+        top: 0;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-color: rgba(136,183,213,0);
+        border-right-color: #c6c330;
+        border-width: 10px;
+        margin-top: -10px;
+    }
+
+.hisMessageArrow {
+    position: relative;
+}
+
+    .hisMessageArrow:after {
+        right: -28px;
+        top: 0;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-color: rgba(136,183,213,0);
+        border-left-color: #49b7a3;
+        border-width: 10px;
+        margin-top: -10px;
+    }
+
+.mineTimeStamp {
+    position: absolute;
+    bottom: 5px;
+    left: 20px;
+    font-size: .6em;
+    color: #000;
+    color: #333;
+    font-size: .8em;
+    font-family: 'HomizioRegular';
+}
+
+.hisTimeStamp {
+    position: absolute;
+    bottom: 5px;
+    right: 20px;
+    font-size: .6em;
+    color: #000;
+    color: #333;
+    font-size: .8em;
+    font-family: 'HomizioRegular';
+}
+
+.sendSlice {
+    width: 95%;
+    height: 150px;
+    margin: 20px auto 0 auto;
+    float: left;
+}
+
+    .sendSlice textarea {
+        width: 75.75%;
+        height: 138px;
+        margin: 0 0 0 2.9%;
+        padding: 5px;
+        float: left;
+        border: 1px solid #ccc;
+        resize: none;
+        font-size: 1em;
+        font-family: 'HomizioRegular';
+    }
+
+.chatButton {
+    width: 17.4%;
+    height: 80px;
+    float: right;
+    margin-top: 25px;
+    margin: 2.9% 1% 0 1%;
+    background: #4eb7a8;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    color: #fff;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+    .chatButton:hover {
+        background: #4eb7b8;
+    }
