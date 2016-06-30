@@ -1,0 +1,105 @@
+﻿@using WebApplication3.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>DASHGUM - Bootstrap Admin Template</title>
+
+    <!-- Bootstrap core CSS -->
+    @Styles.Render("~/Content/assets_dashboard/css/bootstrap.css")
+
+    <!--external css-->
+    @Styles.Render("~/Content/assets_dashboard/font-awesome/css/font-awesome.css")
+    @Styles.Render("~/Content/assets_dashboard/css/zabuto_calendar.css")
+    @Styles.Render("~/Content/assets_dashboard/lineicons/style.css")
+    @Styles.Render("~/Content/custom.css")
+
+    <!-- Custom styles for this template -->
+    @Styles.Render("~/Content/assets_dashboard/css/style.css")
+    @Styles.Render("~/Content/assets_dashboard/css/style-responsive.css")
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!-- **********************************************************************************************************************************************************
+    MAIN CONTENT
+    *********************************************************************************************************************************************************** -->
+
+    <div id="login-page">
+        <div class="container">
+            <div class="form-login">
+                <h2 class="form-login-heading">Faça seu login!</h2>
+                <div class="login-wrap">
+                    <section id="loginForm">
+
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+            {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                          
+
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Insira seu email" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            <br>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Coloque sua senha" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            <label class="checkbox">
+                                <span class="pull-right">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe)
+                                </span>
+                            </label>
+                            <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> ENTRAR</button>
+                            <hr>
+                        }
+                    </section>
+                    <div class="login-social-link centered">
+                        <p>Ou se preferir</p>
+                        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                    </div>
+                    <div class="registration">
+                        Ainda não possui uma conta?<br />
+                        @Html.ActionLink("Criar uma nova conta", "Register", new { ReturnUrl = ViewBag.ReturnUrl })
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+
+    <!--BACKSTRETCH-->
+    <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+
+    @Scripts.Render("~/Content/assets_dashboard/js/jquery.js")
+    @Scripts.Render("~/Content/assets_dashboard/js/jquery.backstretch.min.js")
+    @Scripts.Render("~/Content/assets_dashboard/js/bootstrap.min.js")
+
+    <script type="application/javascript">
+    $(document).ready(function () {
+      var url = '@Url.Content("~/Content/assets_dashboard/img/login-bg.jpg")';
+      $.backstretch(url, { speed: 500 });
+     });
+    </script>
+
+</body>
+</html>

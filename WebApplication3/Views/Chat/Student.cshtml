@@ -1,0 +1,119 @@
+﻿@model WebApplication3.Models.ChatMessage
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Chat Aluno";
+}
+
+@Styles.Render("~/Content/chat.css")
+
+<script>
+    window.onload = function () {
+        var wtf = $('#user_content');
+        var height = wtf[0].scrollHeight;
+        wtf.scrollTop(height);
+    };
+</script>
+
+<div class="contentWrapper">
+    <h3 class="titulo1 text-center"><span class="welcomeCustomer">Chat</span></h3>
+
+    <script>
+        document.getElementById('user_content').onkeydown = function (event) {
+            if (event.keyCode == 13) {
+                alert('5');
+            }
+        }
+        function DoAjaxPostAndMore(btnClicked) {
+            var $form = $(btnClicked).parents('form');
+
+            $.ajax({
+                type: "POST",
+                url: $form.attr('Teacher'),
+                data: {
+                    message: $("#MSG").val(),
+                },
+                error: function (xhr, status, error) {
+                    //do something about the error
+
+                },
+
+                success: function () {
+                    //do something with response
+                    var url = '/Chat/ReturnStudentNewMessages/';
+                    $('#user_content').load(url);
+                    $('#MSG').val("");
+                    $.ajax({
+                        success: function () {
+                            setTimeout(function () {
+                                var wtf = $('#user_content');
+                                height = wtf[0].scrollHeight;
+                                wtf.scrollTop(height);
+                            }, 1000);
+                        }
+                    })
+                }
+            });
+
+
+            return false;// if it's a link to prevent post
+        }
+
+    </script>
+
+
+    <script>
+        setInterval(function () {
+            $(function () {
+                var url = "http://localhost:58776/chat/newmessagestatus";
+                $.ajax(url,
+                {
+                    statusCode: {
+                        200: function () {
+                            var url = '/Chat/ReturnStudentNewMessages/';
+                            $('#user_content').load(url);
+                            $.ajax({
+                                success: function () {
+                                    setTimeout(function () {
+                                        var wtf = $('#user_content');
+                                        height = wtf[0].scrollHeight;
+                                        wtf.scrollTop(height);
+                                    }, 1000);
+                                }
+                            })
+                        }
+                    },
+                });
+            });
+        }, 4000);
+
+
+    </script>
+
+    <div class="chatCcontainer">
+        <div class="chat">
+            <div class="messageDisplay" id="user_content">
+                @if (ViewBag.Messages != null)
+                {
+                    foreach (var Item in ViewBag.Messages)
+                    {
+                        <div class="messageContainer" id="detailsDiv">
+                            <div class="message @(Item.Sender.Equals(User.Identity.GetUserId()) ? "his": "mine")">
+                                <div class="@(Item.Sender.Equals(User.Identity.GetUserId()) ? "hisMessageArrow" : "myMessageArrow")"></div>
+                                <span>@Item.Message</span>
+                            </div>
+                            <div class="@(Item.Sender.Equals(User.Identity.GetUserId()) ? "hisTimeStamp" : "mineTimeStamp")">@Item.Date</div>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="sendSlice">
+                <textarea name="message" id="MSG" onKeyDown="if (event.keyCode == 13) DoAjaxPostAndMore(this);"></textarea>
+                @*<input type="hidden" id="Student_id" name="Student_id" value="@ViewBag.Student_id" />*@
+                <button class="chatButton" type="submit" onclick="DoAjaxPostAndMore(this)">
+                    Enviar
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

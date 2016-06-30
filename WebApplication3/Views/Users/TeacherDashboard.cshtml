@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WebApplication3.Models.Student>
+<style>
+    /*.table-hover tbody tr:hover td, .table-hover tbody tr:not(:first-child):hover th {
+        background-color: #ccddee;
+    }*/
+    #margin {
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+</style>
+<p>Hello Teacher</p>
+    <div class="row mt">
+        <div class="white-panel pn">
+            <div class="white-header">
+                MEUS ALUNOS
+            </div>
+            <section id="unseen">
+                <table class="table table-hover table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First_name)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Last_name)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+
+
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+            {
+                        <tr>
+                            <td>
+
+                                <a href="@Url.Action("Details", "Students", new { id = item.User_id })">@Html.DisplayFor(modelItem => item.First_name)</a>
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Last_name)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </section>
+        </div>
+    </div>
