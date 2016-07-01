@@ -14,15 +14,11 @@
     };
 </script>
 
-<div class="contentWrapper">
-    <h3 class="titulo1 text-center"><span class="welcomeCustomer">Chat</span></h3>
 
-    <script>
-        document.getElementById('user_content').onkeydown = function (event) {
-            if (event.keyCode == 13) {
-                alert('5');
-            }
-        }
+
+<h3 class="titulo1 text-center"><span class="welcomeCustomer">Speakster Chat</span></h3>
+
+<script>
         function DoAjaxPostAndMore(btnClicked) {
             var $form = $(btnClicked).parents('form');
 
@@ -34,12 +30,11 @@
                 },
                 error: function (xhr, status, error) {
                     //do something about the error
-
                 },
 
                 success: function () {
                     //do something with response
-                    var url = '/Chat/ReturnStudentNewMessages/';
+                    var url = '/Chat/ReturnStudentNewMessages' + '@ViewBag.Student_id';
                     $('#user_content').load(url);
                     $('#MSG').val("");
                     $.ajax({
@@ -49,19 +44,15 @@
                                 height = wtf[0].scrollHeight;
                                 wtf.scrollTop(height);
                             }, 1000);
+
                         }
                     })
                 }
             });
-
-
             return false;// if it's a link to prevent post
         }
-
-    </script>
-
-
-    <script>
+</script>
+<script>
         setInterval(function () {
             $(function () {
                 var url = "http://localhost:58776/chat/newmessagestatus";
@@ -69,7 +60,7 @@
                 {
                     statusCode: {
                         200: function () {
-                            var url = '/Chat/ReturnStudentNewMessages/';
+                            var url = '/Chat/ReturnStudentNewMessages' + '@ViewBag.Student_id';
                             $('#user_content').load(url);
                             $.ajax({
                                 success: function () {
@@ -85,35 +76,28 @@
                 });
             });
         }, 4000);
-
-
-    </script>
-
-    <div class="chatCcontainer">
-        <div class="chat">
-            <div class="messageDisplay" id="user_content">
-                @if (ViewBag.Messages != null)
+</script>
+<div class="chat">
+    <div class="messageDisplay" id="user_content">
+        @if (ViewBag.Messages != null)
+            {
+                foreach (var Item in ViewBag.Messages)
                 {
-                    foreach (var Item in ViewBag.Messages)
-                    {
-                        <div class="messageContainer" id="detailsDiv">
-                            <div class="message @(Item.Sender.Equals(User.Identity.GetUserId()) ? "his": "mine")">
-                                <div class="@(Item.Sender.Equals(User.Identity.GetUserId()) ? "hisMessageArrow" : "myMessageArrow")"></div>
-                                <span>@Item.Message</span>
-                            </div>
-                            <div class="@(Item.Sender.Equals(User.Identity.GetUserId()) ? "hisTimeStamp" : "mineTimeStamp")">@Item.Date</div>
-                        </div>
-                    }
-                }
-            </div>
-            <div class="sendSlice">
-                <textarea name="message" id="MSG" onKeyDown="if (event.keyCode == 13) DoAjaxPostAndMore(this);"></textarea>
-                @*<input type="hidden" id="Student_id" name="Student_id" value="@ViewBag.Student_id" />*@
-                <button class="chatButton" type="submit" onclick="DoAjaxPostAndMore(this)">
-                    Enviar
-                </button>
-            </div>
-        </div>
+                <div class="messageContainer" id="detailsDiv">
+                    <div class="message @(Item.Sender.Equals(User.Identity.GetUserId()) ? "his": "mine")">
+                        <div class="@(Item.Sender.Equals(User.Identity.GetUserId()) ? "hisMessageArrow" : "myMessageArrow")"></div>
+                        <span>@Item.Message</span>
+                    </div>
+                    <div class="@(Item.Sender.Equals(User.Identity.GetUserId()) ? "hisTimeStamp" : "mineTimeStamp")">@Item.Date</div>
+                </div>
+            }
+        }
     </div>
-
+    <div class="sendSlice">
+        <textarea name="message" id="MSG" onKeyDown="if (event.keyCode == 13) DoAjaxPostAndMore(this);"></textarea>
+        <input type="hidden" id="Student_id" name="Student_id" value="@ViewBag.Student_id" />
+        <button class="chatButton" type="submit" onclick="DoAjaxPostAndMore(this)">
+            Enviar
+        </button>
+    </div>
 </div>

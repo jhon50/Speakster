@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace Speakster.Models
 {
@@ -50,6 +51,13 @@ namespace Speakster.Models
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
             return userIdentity;
+        }
+
+        public string getProfilePictureOrDefault()
+        {
+            string Picture = ProfilePicture;
+            string Default = "~/images/Profile/avatar.png";
+            return !String.IsNullOrEmpty(Picture) ? Picture : Default;
         }
     }
 

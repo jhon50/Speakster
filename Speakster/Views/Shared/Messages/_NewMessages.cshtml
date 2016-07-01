@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNet.Identity
+
+<li id="header_inbox_bar" class="dropdown">
+    <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+        <i class="fa fa-envelope-o"></i>
+        @{
+            string User_id = User.Identity.GetUserId();
+            Speakster.Models.ApplicationDbContext db = new Speakster.Models.ApplicationDbContext();
+            Speakster.Models.ApplicationUser user = db.Users.Find(User_id);
+            if (user.NewMessage)
+            {
+                <span class="fa fa-circle" style="color:coral;"></span>
+            }
+        }
+    </a>
+    <ul class="dropdown-menu extended inbox">
+        <div class="notify-arrow notify-arrow-green"></div>
+        <li>
+            <p class="green">You have new messages</p>
+        </li>
+        @{
+            if (User.IsInRole("TEACHER"))
+            {
+                var alunos = db.Students.Where(aluno => aluno.Teacher_id == User_id);
+                foreach (var Item in alunos)
+                {
+                    Speakster.Models.ChatMessage message = Item.getLastMessage();
+                    if (message != null)
+                    {
+                        <li>
+                            <a href="index.html#">
+                                <span class="photo"><img alt="avatar" src="@Url.Content(Item.ProfilePicture)"></span>
+                                <span class="subject">
+                                    <span class="from">@Item.First_name @Item.Last_name</span>
+                                    <span class="time">4 hrs.</span>
+                                </span>
+                                <span class="headerMessage">
+                                    @message.Message
+                                </span>
+                            </a>
+                        </li>
+                    }
+                }
+            }
+            <li>
+                <a href="index.html#">See all messages</a>
+            </li>
+        }
+    </ul>
+</li>
+

@@ -56,5 +56,23 @@ namespace Speakster.Models
             }
         }
 
+        public ChatMessage getLastMessage()
+        {
+            List<ChatMessage> messages = db.ChatMessages.Where(msg => msg.Teacher_id == Teacher_id
+                                               && msg.Student_id == User_id
+                                               && msg.Sender == User_id).ToList();
+            return messages.Any() ? messages.Last() : null;
+        }
+
+        public string ProfilePicture
+        {
+            get
+            {
+                string Picture = db.Users.Find(User_id).ProfilePicture;
+                string Default = "~/images/Profile/avatar.png";
+                return !String.IsNullOrEmpty(Picture) ? Picture : Default;
+            }
+        }
+
     }
 }

@@ -38,8 +38,17 @@ namespace Speakster.Models
         {
             get
             {
-                return db.Users.Find(User_id).ProfilePicture;
+                string Picture = db.Users.Find(User_id).ProfilePicture;
+                string Default = "~/images/Profile/avatar.png";
+                return !String.IsNullOrEmpty(Picture) ? Picture : Default;
             }
+        }
+
+        public ChatMessage getLastMessage(string Student_id)
+        {
+            List<ChatMessage> messages = db.ChatMessages.Where(msg => msg.Teacher_id == User_id
+                                               && msg.Student_id == Student_id).ToList();
+            return messages.Any() ? messages.Last() : null;
         }
 
         public Teacher() { }  
