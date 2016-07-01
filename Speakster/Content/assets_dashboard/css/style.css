@@ -593,7 +593,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     right: 5px;
 }
 
-.dropdown-menu.inbox li a .message {
+.dropdown-menu.inbox li a .headerMessage {
     display: block !important;
     font-size: 11px;
 }

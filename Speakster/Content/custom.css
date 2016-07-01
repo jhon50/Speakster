@@ -8,7 +8,7 @@
     /*Botão em Shared _Layout*/
     #fb-button-shared {
         width: 250px;
-        margin:auto;
+        margin: auto;
     }
 
     #banner .inner .inner-content {
@@ -49,14 +49,14 @@
 
 @media screen and (min-width: 736px) and (max-width: 980px) {
     #banner .inner .inner-content {
-        margin:auto;
+        margin: auto;
         width: 60%;
-        position:relative;
-        right:-50px;
-        bottom:-100px;
-
+        position: relative;
+        right: -50px;
+        bottom: -100px;
     }
-    #banner .inner .inner-content p {
+
+        #banner .inner .inner-content p {
             margin-top: -5%;
             width: 70%;
         }
@@ -77,19 +77,20 @@
 }
 
 @media screen and (max-width: 735px) {
-     #banner .inner .inner-content p {
-            margin-top: -3%;
-            width: 70%;
-        }
-         .content-objects select {
-            width: 45%;
-        }
+    #banner .inner .inner-content p {
+        margin-top: -3%;
+        width: 70%;
+    }
 
-        .content-objects #arrow-right {
-            position: relative;
-            right: -50%;
-            top: -43px;
-        }
+    .content-objects select {
+        width: 45%;
+    }
+
+    .content-objects #arrow-right {
+        position: relative;
+        right: -50%;
+        top: -43px;
+    }
 }
 
 
@@ -156,3 +157,5 @@
     END PROFILE PICTURE SECTION
     ==============================
 */
+
+

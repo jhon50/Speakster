@@ -14,9 +14,10 @@
     };
 </script>
 
-<div class="contentWrapper">
-    <h3 class="titulo1 text-center"><span class="welcomeCustomer">Chat</span></h3>
-    
+
+
+    <h3 class="titulo1 text-center"><span class="welcomeCustomer">Speakster Chat</span></h3>
+
     <script>
         function DoAjaxPostAndMore(btnClicked) {
             var $form = $(btnClicked).parents('form');
@@ -43,7 +44,7 @@
                                 height = wtf[0].scrollHeight;
                                 wtf.scrollTop(height);
                             }, 1000);
-                            
+
                         }
                     })
                 }
@@ -76,32 +77,27 @@
             });
         }, 4000);
     </script>
-    
-    <div class="chatCcontainer">
-        <div class="chat">
-            <div class="messageDisplay" id="user_content">
-                @if (ViewBag.Messages != null)
+    <div class="chat">
+        <div class="messageDisplay" id="user_content">
+            @if (ViewBag.Messages != null)
+            {
+                foreach (var Item in ViewBag.Messages)
                 {
-                    foreach (var Item in ViewBag.Messages)
-                    {
-                        <div class="messageContainer" id="detailsDiv">
-                            <div class="message @(Item.Sender.Equals(User.Identity.GetUserId()) ? "his": "mine")">
-                                <div class="@(Item.Sender.Equals(User.Identity.GetUserId()) ? "hisMessageArrow" : "myMessageArrow")"></div>
-                                <span>@Item.Message</span>
-                            </div>
-                            <div class="@(Item.Sender.Equals(User.Identity.GetUserId()) ? "hisTimeStamp" : "mineTimeStamp")">@Item.Date</div>
+                    <div class="messageContainer" id="detailsDiv">
+                        <div class="message @(Item.Sender.Equals(User.Identity.GetUserId()) ? "his": "mine")">
+                            <div class="@(Item.Sender.Equals(User.Identity.GetUserId()) ? "hisMessageArrow" : "myMessageArrow")"></div>
+                            <span>@Item.Message</span>
                         </div>
-                    }
+                        <div class="@(Item.Sender.Equals(User.Identity.GetUserId()) ? "hisTimeStamp" : "mineTimeStamp")">@Item.Date</div>
+                    </div>
                 }
-            </div>
-            <div class="sendSlice">
-                <textarea name="message" id="MSG" onKeyDown="if (event.keyCode == 13) DoAjaxPostAndMore(this);" ></textarea>
-                <input type="hidden" id="Student_id" name="Student_id" value="@ViewBag.Student_id" />
-                <button class="chatButton" type="submit" onclick="DoAjaxPostAndMore(this)">
-                    Enviar
-                </button>
-            </div>
+            }
+        </div>
+        <div class="sendSlice">
+            <textarea name="message" id="MSG" onKeyDown="if (event.keyCode == 13) DoAjaxPostAndMore(this);"></textarea>
+            <input type="hidden" id="Student_id" name="Student_id" value="@ViewBag.Student_id" />
+            <button class="chatButton" type="submit" onclick="DoAjaxPostAndMore(this)">
+                Enviar
+            </button>
         </div>
     </div>
-</div>
-

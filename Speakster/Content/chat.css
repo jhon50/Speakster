@@ -1,23 +1,37 @@
-﻿       
-.chatInfo {
+﻿.chatInfo {
     width: 100%;
     font-size: 1.2em;
-    font-family: 'HomizioRegular';
+    font-family: "Open Sans", sans-serif;
     color: #333;
 }
 
-.chatContainer {
-    width: 100%;
-    float: left;
-    margin: 0 auto;
-}
-
 .chat {
-    width: 100%;
-    float: left;
-    height: 750px;
-    background: #f0f0f0;
-    border: 1px solid #ccc;
+    position: relative;
+    bottom: -300px;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 80vh;
+    max-height: 500px;
+    z-index: 2;
+    overflow: hidden;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    border-radius: 20px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
 }
 
 .messageDisplay {
@@ -28,6 +42,7 @@
     background: #fff;
     border: 1px solid #ccc;
     overflow-y: scroll;
+    background: fff;
 }
 
 .messageContainer {
@@ -45,16 +60,20 @@
     word-break: break-all;
     color: #fff;
     font-size: 1.2em;
-    font-family: 'HomizioRegular';
+    font-family: "Open Sans", sans-serif;
 }
 
+    .message span {
+        color: #8a959c;
+    }
+
 .mine {
-    background: #c6c330;
+    background: #f0f4f7;
     float: left;
 }
 
 .his {
-    background: #49b7a3;
+    background: #dbdee0;
     float: right;
 }
 
@@ -72,9 +91,9 @@
         position: absolute;
         pointer-events: none;
         border-color: rgba(136,183,213,0);
-        border-right-color: #c6c330;
-        border-width: 10px;
-        margin-top: -10px;
+        border-right-color: #f0f4f7;
+        border-width: 9px;
+        margin-top: 5px;
     }
 
 .hisMessageArrow {
@@ -91,9 +110,9 @@
         position: absolute;
         pointer-events: none;
         border-color: rgba(136,183,213,0);
-        border-left-color: #49b7a3;
-        border-width: 10px;
-        margin-top: -10px;
+        border-left-color: #dbdee0;
+        border-width: 9px;
+        margin-top: 5px;
     }
 
 .mineTimeStamp {
@@ -101,8 +120,8 @@
     bottom: 5px;
     left: 20px;
     font-size: .6em;
-    color: #000;
-    color: #333;
+    color: #fff;
+    opacity: 0.2;
     font-size: .8em;
     font-family: 'HomizioRegular';
 }
@@ -112,43 +131,53 @@
     bottom: 5px;
     right: 20px;
     font-size: .6em;
-    color: #000;
-    color: #333;
+    color: #fff;
+    opacity: 0.2;
     font-size: .8em;
     font-family: 'HomizioRegular';
 }
 
+
+
 .sendSlice {
-    width: 95%;
-    height: 150px;
-    margin: 20px auto 0 auto;
-    float: left;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 1 40px;
+    -ms-flex: 0 1 40px;
+    flex: 0 1 40px;
+    width: 100%;
+    background: #fff;
+    padding: 10px;
+    position: relative;
 }
 
     .sendSlice textarea {
-        width: 75.75%;
-        height: 138px;
-        margin: 0 0 0 2.9%;
-        padding: 5px;
-        float: left;
-        border: 1px solid #ccc;
+        background: #f0f4f7;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+        outline: none !important;
         resize: none;
-        font-size: 1em;
-        font-family: 'HomizioRegular';
+        font-size: 1.2em;
+        height: 30px;
+        margin-left: 5px;
+        width: 265px;
     }
 
 .chatButton {
-    width: 17.4%;
-    height: 80px;
-    float: right;
-    margin-top: 25px;
-    margin: 2.9% 1% 0 1%;
-    background: #4eb7a8;
-    border-radius: 5px;
-    border: 1px solid transparent;
+    position: absolute;
+    z-index: 1;
+    top: 9px;
+    right: 10px;
     color: #fff;
-    font-size: 1.2em;
-    cursor: pointer;
+    border: none;
+    background: #aab8c2;
+    font-size: 10px;
+    text-transform: uppercase;
+    line-height: 1;
+    padding: 6px 10px;
+    border-radius: 10px;
+    outline: none !important;
+    -webkit-transition: background .2s ease;
+    transition: background .2s ease;
 }
 
     .chatButton:hover {
