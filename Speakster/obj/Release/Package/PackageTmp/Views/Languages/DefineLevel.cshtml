@@ -1,0 +1,53 @@
+﻿@model Speakster.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Defina seu nível no idioma";
+}
+
+<h2>Passo 2</h2>
+
+@using (Html.BeginForm("DefineLevel", "Languages", new { languageID = ViewBag.Language_id }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+          <h3>Inovamos no ensino de @ViewBag.ChosenLanguageName!</h3>
+            <p>Queremos saber suas necessidades, assim podemos ensinar o que você realmente precisa!</p>
+            <br/>
+            <p>Com relação ao @ViewBag.ChosenLanguageName :</p>
+            <br/>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SpeakingLevel_id, "Eu", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.DropDownList("SpeakingLevel_id", null, htmlAttributes: new { @class = "selectpicker form-control" })
+                @Html.ValidationMessageFor(model => model.SpeakingLevel_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br/>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ListeningLevel_id, "&", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.DropDownList("ListeningLevel_id", null, htmlAttributes: new { @class = "selectpicker form-control" })
+                @Html.ValidationMessageFor(model => model.ListeningLevel_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br/>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Prosseguir" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>

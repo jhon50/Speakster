@@ -24,6 +24,16 @@ namespace Speakster
                       "~/Scripts/respond.js",
                       "~/Scripts/bootstrap-select.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/home/jquery").Include(
+                      "~/Content/js/jquery.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/home").Include(
+                      "~/Content/js/jquery.scrollex.min.js",
+                      "~/Content/js/jquery.scrolly.min.js",
+                      "~/Content/js/skel.min.js",
+                      "~/Content/js/util.js",
+                      "~/Content/js/main.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-select.css",
@@ -43,6 +53,18 @@ namespace Speakster
                       "~/Content/assets_dashboard/js/zabuto_calendar.js",
                       "~/Scripts/modal.js"
                       ));
+
+            bundles.Add(new StyleBundle("~/Content/dashboard").Include(
+                      "~/Content/assets_dashboard/css/bootstrap.css",
+                      "~/Content/assets_dashboard/font-awesome/css/font-awesome.css",
+                      "~/Content/assets_dashboard/lineicons/style.css",
+                      "~/Content/custom.css"));
+
+            bundles.Add(new StyleBundle("~/Content/dashboard/style").Include(
+                      "~/Content/assets_dashboard/css/style.css",
+                      "~/Content/assets_dashboard/css/style-responsive.css"));
+
+
 
         }
     }

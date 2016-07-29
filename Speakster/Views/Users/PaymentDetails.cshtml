@@ -1,0 +1,39 @@
+﻿@model Speakster.Models.UserPayment
+
+@{
+    ViewBag.Title = "Assinatura";
+}
+
+<h2>Minha Assinatura</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment_status)
+        </dt>
+
+        <dd>
+            @ViewBag.isActive
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Txn_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Txn_id)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Voltar", null, null, null, new { href = Request.UrlReferrer })
+</p>

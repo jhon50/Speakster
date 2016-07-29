@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    Speakster.Models.ApplicationDbContext db = new Speakster.Models.ApplicationDbContext();
+    Speakster.Models.ApplicationUser applicationUser = db.Users.Find(User.Identity.GetUserId());
+
+    <div class="profile-picture-container">
+        <p id="profile-picture"><img src="@Url.Content(applicationUser.getProfilePictureOrDefault())" width="130" height="130"></p>
+        <a class="profilePictureButton modalButton">
+            <div id="black-square-container">
+                <div id="black-square"></div>
+                <div id="update-picture-text">
+                    <h5>Atualizar foto do perfil</h5>
+                </div>
+            </div>
+        </a>
+    </div>
+
+
+        <h5 class="centered">@User.Identity.GetUserName()</h5>
+
+
+
+                         <!-- Profile Picture Modal -->
+        <div class="modal fade" id="profilePictureModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Foto do Perfil</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{
+                            Speakster.Models.ChangeProfilePictureViewModel model = new Speakster.Models.ChangeProfilePictureViewModel();
+                            model.id = applicationUser.Id;
+                            Html.RenderPartial("_ProfilePictureModal", model);
+                        }
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+                    <!-- Profile Picture Modal -->
+
+                            }
+
+

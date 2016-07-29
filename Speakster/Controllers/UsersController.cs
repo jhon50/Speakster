@@ -10,7 +10,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Speakster.Models;
-
+using System.Threading.Tasks;
 
 namespace Speakster.Controllers
 {
@@ -19,6 +19,7 @@ namespace Speakster.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Users
+        [Auth(Roles = "ADMIN")]
         public ActionResult Index()
         {
             var applicationUsers = db.Users.Include(a => a.Language).Include(a => a.ListeningLevel).Include(a => a.SpeakingLevel);
@@ -47,6 +48,7 @@ namespace Speakster.Controllers
             }
         }
 
+        [Auth]
         //GET: Checkout
         public ActionResult Checkout()
         {
@@ -54,6 +56,57 @@ namespace Speakster.Controllers
         }
 
         [Auth]
+        public async Task<ActionResult> Confirmation()
+        {
+            string code = "";
+            if (User.Identity.IsAuthenticated)
+            {
+                //Envia um email com os dados da transação
+                Email email = new Email();
+                string UserId = User.Identity.GetUserId();
+                Student student = db.Students.Find(UserId);
+                ApplicationUser user = db.Users.Find(UserId);
+                UserPayment payment = db.UserPayments.Find(UserId);
+                if (payment != null)
+                {
+                    code = payment.Txn_id;
+                    string text = "Seu pagamento foi confirmado e sua recorrência está ativa." +
+                              "O código da sua transação é: " + code;
+
+                    await email.Send(user.Email, student.FullName, "Confirmação de pagamento Speakster", "codigo da transação: " + code,
+                        "Olá " + student.First_name + ". Seu pagamento foi confirmado! <br/> Por favor, guarde o código da sua transação para sua segurança! <br/>"
+                        + "Código da transação: " + code + "<br/> Caso tenha alguma dúvida entre em contato com nosso suporte! <br/> Estamos muito felizes por ter você como nosso aluno! <br/> <a href='http://speakster.com.br'>SPEAKSTER</a> ");
+                    return View();
+                }
+            }
+            return RedirectToAction("Dashboard", "Users");
+        }
+
+        [Auth]
+        public ActionResult PaymentDetails(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            UserPayment userPayment = db.UserPayments.Find(id);
+            if (userPayment.isActive())
+            {
+                ViewBag.isActive = "Ativa";
+            }
+            else
+            {
+                ViewBag.isActive = "Inativa";
+            }
+
+            if (userPayment == null)
+            {
+                return HttpNotFound();
+            }
+            return View(userPayment);
+        }
+
+        [Auth(Roles = "ADMIN")]
         // GET: Users/Details/5
         public ActionResult Details(string id)
         {
@@ -69,6 +122,7 @@ namespace Speakster.Controllers
             return View(applicationUser);
         }
 
+        [Auth(Roles = "ADMIN")]
         // GET: Users/Create
         public ActionResult Create()
         {
@@ -78,6 +132,7 @@ namespace Speakster.Controllers
             return View();
         }
 
+        [Auth(Roles = "ADMIN")]
         // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -116,7 +171,7 @@ namespace Speakster.Controllers
                         postedFile.SaveAs(Server.MapPath("~/Uploads/ProfilePictures/") + namePicture);
                         string name = user.UserName;
                         user.ProfilePicture = "/Uploads/ProfilePictures/" + namePicture;
-                        
+
                     }
                 }
                 db.Entry(user).State = EntityState.Modified;
@@ -137,7 +192,7 @@ namespace Speakster.Controllers
             return res;
         }
 
-        [Auth]
+        [Auth(Roles = "ADMIN")]
         // GET: Users/Edit/5
         public ActionResult Edit(string id)
         {
@@ -156,7 +211,7 @@ namespace Speakster.Controllers
             return View(applicationUser);
         }
 
-        [Auth]
+        [Auth(Roles = "ADMIN")]
         // POST: Users/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -177,6 +232,7 @@ namespace Speakster.Controllers
         }
 
         // GET: Users/Delete/5
+        [Auth(Roles = "ADMIN")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -192,6 +248,7 @@ namespace Speakster.Controllers
         }
 
         // POST: Users/Delete/5
+        [Auth(Roles = "ADMIN")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)

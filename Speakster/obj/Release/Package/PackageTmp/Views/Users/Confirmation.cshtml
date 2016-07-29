@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Confirmação de Pagamento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Confirmação de Pagamento</h2>
+<div class="row">
+    <h2>Seu pagamento foi confirmado com sucesso!</h2>
+    <p>Dentro de alguns instantes você receberá, em seu email cadastrado no Speaskter, os dados do seu pagamento.</p>
+    <p>Agradecemos por ter você aqui!</p>
+</div>
+<div class="row">
+    <div class="col-xs-2 pull-right">
+        @Html.ActionLink("Iniciar Speakster!", "Dashboard", "Users", new { @class="btn btn-success" })
+    </div>
+</div>
+

@@ -26,6 +26,15 @@ namespace Speakster.Models
         [Display(Name = "Sobrenome")]
         public string Last_name { get; set; }
 
+        [Display(Name = "Nível de Fala")]
+        public string SpeakingLevel { get { return getSpeakingLevel(); } }
+
+        [Display(Name = "Nível de Entendimento")]
+        public string ListeningLevel { get { return getListeningLevel(); } }
+
+        [Display(Name = "Idioma Escolhido")]
+        public string Language { get { return getLanguage(); } }
+
         public string Email { get { return getEmail(); } }
 
         public Student() {}
@@ -35,6 +44,24 @@ namespace Speakster.Models
             this.User_id = User_id;
             this.First_name = First_name;
             this.Last_name = Last_name;
+        }
+
+        private string getSpeakingLevel()
+        {
+            ApplicationUser user = db.Users.Find(User_id);
+            return user.SpeakingLevel.Description;
+        }
+
+        private string getListeningLevel()
+        {
+            ApplicationUser user = db.Users.Find(User_id);
+            return user.ListeningLevel.Description;
+        }
+
+        private string getLanguage()
+        {
+            ApplicationUser user = db.Users.Find(User_id);
+            return user.Language.Name;
         }
 
         public string getEmail()
@@ -62,6 +89,24 @@ namespace Speakster.Models
                                                && msg.Student_id == User_id
                                                && msg.Sender == User_id).ToList();
             return messages.Any() ? messages.Last() : null;
+        }
+
+        public bool hasTeacher()
+        {
+            return Teacher_id != null ? true : false;
+        }
+
+        public Teacher getTeacher()
+        {
+            return db.Teachers.Find(Teacher_id);
+        }
+
+        public string FullName
+        {
+            get
+            {
+                return First_name + " " + Last_name;
+            }
         }
 
         public string ProfilePicture

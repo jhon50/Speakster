@@ -8,15 +8,20 @@ namespace Speakster.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
+        [System.Web.Mvc.RemoteAttribute("IsUserExists", "Validation", ErrorMessage = "O email que você digitou já existe.")]
+        [EmailAddress(ErrorMessage = "Você não digitou um endereço de email válido.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
+        [Display(Name = "Idioma")]
         [DefaultValue(1)]
         public int Language_id { get; set; }
 
+        [Display(Name = "Nível de Entendimento")]
         [DefaultValue(1)]
         public int ListeningLevel_id { get; set; }
 
+        [Display(Name = "Nível de Conversação")]
         [DefaultValue(1)]
         public int SpeakingLevel_id { get; set; }
 
@@ -78,44 +83,47 @@ namespace Speakster.Models
 
     public class RegisterViewModel
     {
-
+        [Required(ErrorMessage = "Você não digitou seu nome.")]
         [Display(Name = "Nome")]
         public string First_name { get; set; }
 
+        [Required(ErrorMessage = "Você não digitou seu sobrenome.")]
         [Display(Name = "Sobrenome")]
         public string Last_name { get; set; }
 
         [Required]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Você não digitou um endereço de email válido.")]
+        [System.Web.Mvc.RemoteAttribute("IsUserExists", "Validation", ErrorMessage = "O email que você digitou já existe.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "Digite uma senha.")]
+        [StringLength(100, ErrorMessage = "A {0} deve ter pelo menos {2} dígitos.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Senha")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "As senhas digitadas não são iguais.")]
         public string ConfirmPassword { get; set; }
 
         //foreign keys begin
+        [Display(Name = "Idioma")]
         [DefaultValue(1)]
         public int Language_id { get; set; }
 
         [ForeignKey("Language_id")]
         public virtual Language Language { get; set; }
 
-
+        [Display(Name = "Nível de Conversação")]
         [DefaultValue(1)]
         public int SpeakingLevel_id { get; set; }
 
         [ForeignKey("SpeakingLevel_id")]
         public virtual SpeakingLevel SpeakingLevel { get; set; }
 
-
+        [Display(Name = "Nível de Entendimento")]
         [DefaultValue(1)]
         public int ListeningLevel_id { get; set; }
 
@@ -135,9 +143,9 @@ namespace Speakster.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "A {0} deve ter pelo menos {2} dígitos.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Senha")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]

@@ -1,0 +1,22 @@
+﻿@model Speakster.Models.Teacher
+
+
+<h2>@Html.DisplayFor(model => model.First_name) @Html.DisplayFor(model => model.Last_name)   </h2>
+
+<div>
+    <p>
+        @Html.DisplayNameFor(model => model.Language.Name)
+        @Html.DisplayFor(model => model.Language.Name)
+        <br/>
+        @Html.DisplayNameFor(model => model.Address)
+        @Html.DisplayFor(model => model.Address)
+        <br />
+        @Html.DisplayNameFor(model => model.CEP)
+        @Html.DisplayFor(model => model.CEP)
+        <br />
+        @Html.DisplayNameFor(model => model.Phone)
+        @Html.DisplayFor(model => model.Phone)
+    </p>           
+</div>
+
+

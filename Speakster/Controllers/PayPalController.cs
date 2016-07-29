@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Speakster.Models;
+using System.Web.Configuration;
 
 namespace Speakster.Controllers
 {
@@ -62,6 +63,9 @@ namespace Speakster.Controllers
                 {
                     case "subscr_payment":
                         user_payment = setPaymentInfo(user_payment);
+
+                        //sendEmail();
+                        
                         if (alreadyRecurring)
                         {
                             /*
@@ -99,8 +103,7 @@ namespace Speakster.Controllers
 
                 db.SaveChanges();
 
-                //db.PayPals.Add(paypal);
-                //db.SaveChanges();
+                //PayPal Instruction - By John
                 //check the payment_status is Completed
                 //check that txn_id has not been previously processed
                 //check that receiver_email is your Primary PayPal email

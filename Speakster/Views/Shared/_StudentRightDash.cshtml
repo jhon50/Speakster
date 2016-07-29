@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNet.Identity
+<h3>MEU PROFESSOR</h3>
+@{
+    //busca pelo usuário
+    Speakster.Models.ApplicationDbContext db = new Speakster.Models.ApplicationDbContext();
+    //Speakster.Models.ApplicationUser applicationUser = db.Users.Find(User.Identity.GetUserId());
+    Speakster.Models.Student student = db.Students.Find(User.Identity.GetUserId());
+
+    //busca pelo professor do usuário
+    //necessário para ter as informações específicas do perfil do professor
+    Speakster.Models.Teacher teacher = db.Teachers.Find(student.Teacher_id);
+    if (teacher != null)
+    {
+        //busca pela entrada de usuario do professor
+        //necessário para pegar a foto de perfil
+        Speakster.Models.ApplicationUser teacher_user = db.Users.Find(teacher.User_id);
+
+        //pega ProfilePicture do respectivo professor
+        if (teacher_user != null && !String.IsNullOrEmpty(teacher_user.ProfilePicture))
+        {
+            <p class="centered"><a href="profile.html"><img src="@Url.Content("~/" + teacher_user.ProfilePicture)" class="img-circle" width="130" height="130"></a></p>
+                                    <h5 class="centered">@teacher.First_name @teacher.Last_name</h5>
+        }
+        else
+        {
+            <p>Professor sem foto!</p>
+        }
+    }
+    else
+    {
+        //Aqui ele é aluno sem professor
+        <p>Você ainda não tem um professor.</p>
+    }
+}

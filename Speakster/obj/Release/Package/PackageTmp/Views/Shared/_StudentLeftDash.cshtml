@@ -1,0 +1,75 @@
+﻿@using Microsoft.AspNet.Identity
+@{ 
+    string UserId = User.Identity.GetUserId();
+
+    //busca pelo usuário
+    Speakster.Models.ApplicationDbContext db = new Speakster.Models.ApplicationDbContext();
+    //Speakster.Models.ApplicationUser applicationUser = db.Users.Find(User.Identity.GetUserId());
+    Speakster.Models.Student student = db.Students.Find(User.Identity.GetUserId());
+}
+
+
+<aside>
+    <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+            @Html.Partial("_ProfilePictureSection")
+            <li class="mt">
+                <a class="active" href="/Users/Dashboard">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Painel</span>
+                </a>
+            </li>
+
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-book"></i>
+                    <span>Minha Conta</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="~/Users/PaymentDetails/@UserId">Assinatura Speakster</a></li>
+                    <li><a href="~/Manage">Segurança</a></li>
+                    <li><a href="~/Students/Details/@UserId">Dados Pessoais</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-user"></i>
+                    <span>Meu Professor</span>
+                </a>
+                <ul class="sub">
+                    <li>
+                        
+                        <a href="~/chat/Student"><i class="fa fa-comment-o"></i>Falar com Professor</a>
+                    </li>
+                    <li>
+                        <a href="~/Details/@student.Teacher.User_id">Informações Pessoais</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a href="/Teachers/Gallery">
+                    <i class="fa fa-users"></i>
+                    <span>Professores Speakster</span>
+                </a>
+                @*<ul class="sub">
+                    <li><a href="basic_table.html">Basic Table</a></li>
+                    <li><a href="responsive_table.html">Responsive Table</a></li>
+                </ul>*@
+            </li>
+
+            @*<li class="sub-menu">
+                <a href="javascript:;">
+                    <i class=" fa fa-bar-chart-o"></i>
+                    <span>Charts</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="morris.html">Morris</a></li>
+                    <li><a href="chartjs.html">Chartjs</a></li>
+                </ul>
+            </li>*@
+
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>

@@ -15,6 +15,14 @@ namespace Speakster.Models
         [Key]
         public string User_id { get; set; }
 
+        public string FullName
+        {
+            get
+            {
+                return First_name + " " + Last_name;
+            }
+        }
+
         //public ApplicationUser User { get; set; }
         public string First_name { get; set; }
 
@@ -47,7 +55,8 @@ namespace Speakster.Models
         public ChatMessage getLastMessage(string Student_id)
         {
             List<ChatMessage> messages = db.ChatMessages.Where(msg => msg.Teacher_id == User_id
-                                               && msg.Student_id == Student_id).ToList();
+                                               && msg.Student_id == Student_id
+                                               && msg.Sender == User_id).ToList();
             return messages.Any() ? messages.Last() : null;
         }
 

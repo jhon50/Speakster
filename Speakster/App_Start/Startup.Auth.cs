@@ -55,8 +55,8 @@ namespace Speakster
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-               appId: "184540295278460",
-               appSecret: "9ffd25cd9809b2f939dbb9749362ac7c");
+               appId: "475929389278074",
+               appSecret: "a44e050795b498f1f1f09092f1c1d0b5");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

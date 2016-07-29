@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using Speakster.Models;
 using System.Data.Entity;
 using System.Net;
+using System.Collections.Generic;
 
 namespace Speakster.Controllers
 {
@@ -112,19 +113,22 @@ namespace Speakster.Controllers
                 db.SaveChanges();
             }
         }
+
         public ActionResult ReturnTeacherNewMessages()
         {
             string Student_id = Request["Student_id"];
             ApplicationUser user = db.Users.Find(User.Identity.GetUserId());
             string Teacher_id = user.Id;
-            
+
             //I'm a Teacher
             //Retrieve teacher messages to respective student
-            var messages = db.ChatMessages.Where(msg => msg.Teacher_id == Teacher_id
-                                                && msg.Student_id == Student_id
-                                                );
 
-            ViewBag.Messages = (messages.Any()) ? messages : null;
+            List<ChatMessage> messages = db.ChatMessages.Where(msg => msg.Teacher_id == Teacher_id
+                                                            && msg.Student_id == Student_id
+                                                            
+                                                ).ToList();
+
+            ViewBag.Messages = (messages.Any()) ? messages.Last() : null;
 
             //Seta a FLAG como FALSE após o usuário receber as mensagens
             user.NewMessage = false;
@@ -137,11 +141,12 @@ namespace Speakster.Controllers
         {
             ApplicationUser user = db.Users.Find(User.Identity.GetUserId());
             Student student = db.Students.Find(user.Id);
-            var messages = db.ChatMessages.Where(msg => msg.Student_id == student.User_id
-                                                && msg.Teacher_id == student.Teacher_id
-                                                );
 
-            ViewBag.Messages = (messages.Any()) ? messages : null;
+            List<ChatMessage> messages = db.ChatMessages.Where(msg => msg.Student_id == student.User_id
+                                                && msg.Teacher_id == student.Teacher_id
+                                              ).ToList();
+
+            ViewBag.Messages = (messages.Any()) ? messages.Last() : null;
 
             //Seta a FLAG como FALSE após o usuário receber as mensagens
             user.NewMessage = false;

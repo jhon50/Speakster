@@ -13,23 +13,30 @@ namespace Speakster.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        //GET
+
         public ActionResult Index()
         {
-            ViewBag.Id = new SelectList(db.Languages, "Id", "Name");
             return View();
+        }
+        
+        
+        //GET
+        public ActionResult HomeLanguages()
+        {
+            ViewBag.Id = new SelectList(db.Languages, "Id", "Name");
+            return PartialView("_HomeLanguages");
         }
 
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include = "Id,Name")] Language language)
+        public ActionResult HomeLanguages([Bind(Include = "Id,Name")] Language language)
         {
             if (ModelState.IsValid)
             {
                 return RedirectToAction("DefineLevel", "Languages", new { LanguageID = language.Id });
             }
-                return View(language);
+                return PartialView("_HomeLanguage", language);
         }
 
         public ActionResult About()

@@ -39,7 +39,7 @@ namespace Speakster.Controllers
         // GET: Students/Create
         public ActionResult Create()
         {
-            ViewBag.Teacher_id = new SelectList(db.Teachers, "User_id", "Name");
+            ViewBag.Teacher_id = new SelectList(db.Teachers, "User_id", "FullName");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace Speakster.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Teacher_id = new SelectList(db.Teachers, "User_id", "Name", student.Teacher_id);
+            ViewBag.Teacher_id = new SelectList(db.Teachers, "User_id", "FullName", student.Teacher_id);
             return View(student);
         }
 
@@ -73,7 +73,7 @@ namespace Speakster.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Teacher_id = new SelectList(db.Teachers, "User_id", "Name", student.Teacher_id);
+            ViewBag.Teacher_id = new SelectList(db.Teachers, "User_id", "FullName", student.Teacher_id);
             return View(student);
         }
 
@@ -90,7 +90,7 @@ namespace Speakster.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Teacher_id = new SelectList(db.Teachers, "User_id", "Name", student.Teacher_id);
+            ViewBag.Teacher_id = new SelectList(db.Teachers, "User_id", "FullName", student.Teacher_id);
             return View(student);
         }
 

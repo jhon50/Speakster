@@ -77,5 +77,10 @@ namespace Speakster.Models
 
         public string Address_zip { get; set; }
 
+        public bool isActive()
+        {
+            return Payment_status.Equals("Completed") ? true : false;
+        }
+
     }
 }
